@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ################ Default Style for Browser ############### */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ##################### Main Container ##################### */
+.main-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ##################### Colors ################## */
+.color-main {
+  color: rgba(25, 25, 235, 0.681);
+}
+.color-main-two {
+  color: white;
+}
+.color-dark {
+  color: black;
+}
+/* ##################### Background Colors ################## */
+.color-main-bg {
+  background: rgba(25, 25, 235, 0.681);
+}
+
+ul {
+  list-style: none;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+:where(.css-dev-only-do-not-override-3mqfnx).ant-card .ant-card-head-title {
+  display: inline-block;
+  flex: 1;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  padding: 4px 0;
+}
+.my-result-fail {
+  /* background-color: #ff3131cb; */
+  /* font-weight: bold; */
+  color: #f87171;
+}
+
+.merit-1 {
+  background-color: rgb(53, 187, 53);
+}
+.merit-2 {
+  background-color: rgba(76, 76, 230, 0.759);
+}
+.merit-3 {
+  background-color: rgb(238, 174, 55);
+}
+.merit-bg {
+  background-color: rgb(246, 246, 246);
+}
