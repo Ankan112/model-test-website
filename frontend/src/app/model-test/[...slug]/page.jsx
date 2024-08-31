@@ -1,8 +1,9 @@
 "use client";
 import { Button, Card, Form, Radio, Tabs } from "antd";
+import { useState } from "react";
 
 const QuestionList = ({ params }) => {
-  console.log(params);
+  // console.log(params);
   const [form] = Form.useForm();
 
   //   console.log(slug?.[1]);
@@ -465,8 +466,23 @@ const QuestionList = ({ params }) => {
       ],
     },
   ];
-
+  const defaultValue = [
+    {
+      question: "কোনটি ভার্চুয়াল রিয়েলিটিতে ব্যবহৃত হয়?",
+      ans: "B. দ্বি-মাত্রিক সিমুলেশন",
+    },
+    {
+      question: "কৃত্রিম বুদ্ধিমত্তা প্রধানত কোথায় ব্যবহৃত হয়?",
+      ans: "B. বায়োইনফরমেটিক্স",
+    },
+    {
+      question: "রোবট গঠনে কয়টি নির্দিষ্ট বিশেষত্ব রয়েছে?",
+      ans: "B. ৩",
+    },
+  ];
   const handleOnFinish = (value) => {
+    // console.log(value);
+
     const result = data.subjects.map((item) => {
       return {
         subject: item?.subject_name,
@@ -480,7 +496,8 @@ const QuestionList = ({ params }) => {
       };
     });
     // console.log(data.subjects);
-    // console.log(result);
+
+    console.log(result);
 
     const fintal = finalAns?.map((item) => {
       let not_answer = 0;
@@ -509,49 +526,31 @@ const QuestionList = ({ params }) => {
         not_answer,
       };
     });
-    console.log(fintal);
+    // console.log(fintal);
   };
-  const as = {
-    question_1: "hello1d",
-    question_2: "hello2d",
-    question_3: "hello32",
-    question_4: undefined,
+  const savedValues = localStorage.getItem("defaultValues");
+  const [defaultValues, setDefaultValues] = useState(() => {
+    return savedValues ? JSON.parse(savedValues) : [];
+  });
+  localStorage.setItem("defaultValues", JSON.stringify(defaultValues));
+  // console.log(JSON.parse(savedValues));
+  const newDefaultValues = JSON.parse(savedValues);
+  // console.log(newDefaultValues[0]?.question);
+  // console.log(
+  //   newDefaultValues?.find(
+  //     (item) => item.question === "কোনটি ভার্চুয়াল রিয়েলিটিতে ব্যবহৃত হয়?"
+  //   ).ans
+  // );
+  const handleDefaultValue = (question, ans) => {
+    const updatedValues = defaultValues.filter(
+      (item) => item.question !== question
+    );
+
+    // Add the new entry
+    setDefaultValues([...updatedValues, { question, ans }]);
+    // console.log(value, questionTitle);
   };
-  const ans = {
-    question_1: "hello1",
-    question_2: "hello2",
-    question_3: "hello3",
-    question_4: "hello3",
-  };
-  let notAns = 0;
-  let rightAns = 0;
-  let wrongAns = 0;
 
-  for (const key in as) {
-    if (as[key] === undefined) {
-      notAns = notAns + 1;
-    } else if (as[key] === ans[key]) {
-      rightAns = rightAns + 1;
-    } else {
-      wrongAns = wrongAns + 1;
-    }
-    // console.log(as[key]);
-  }
-  //   console.log({ notAns, wrongAns, rightAns });
-
-  let score = rightAns - wrongAns * 0.25;
-  //   console.log({ score });
-  // const handleOk = (e) => {
-  //   setOpen(false);
-  //   console.log(e);
-  // };
-  // const handleCancel = (e) => {
-  //   router.replace(navigate.slice(0, navigate.length - 2));
-
-  //   console.log(e);
-  // };
-
-  //   console.log(data.subjects);
   return (
     <>
       {/* <div>
@@ -582,12 +581,7 @@ const QuestionList = ({ params }) => {
         </div>
         <div className="">
           <div className="main-container">
-            <Form
-              layout="vertical"
-              form={form}
-              onFinish={handleOnFinish}
-              initialValues={{ Hello: "C" }}
-            >
+            <Form layout="vertical" form={form} onFinish={handleOnFinish}>
               <Tabs
                 defaultActiveKey="1"
                 type="line"
@@ -604,7 +598,15 @@ const QuestionList = ({ params }) => {
                       } = question || {};
                       // console.log(options[1].option);
                       return (
-                        <Form.Item key={question_id} name={questionTitle}>
+                        <Form.Item
+                          key={question_id}
+                          name={questionTitle}
+                          initialValue={
+                            newDefaultValues?.find(
+                              (item) => item.question === questionTitle
+                            )?.ans || undefined
+                          }
+                        >
                           <Card
                             size="small"
                             title={`${index + 1}. ${questionTitle}`}
@@ -614,7 +616,11 @@ const QuestionList = ({ params }) => {
                               name="q-1"
                               buttonStyle="solid"
                               className="w-full"
-                              // defaultValue={options[1].option}
+                              initialValue={
+                                newDefaultValues?.find(
+                                  (item) => item.question === questionTitle
+                                )?.ans || undefined
+                              }
                               // optionType="button"
                             >
                               {options?.map((item) => (
@@ -622,7 +628,12 @@ const QuestionList = ({ params }) => {
                                   key={item?.option_id}
                                   className={`w-full rounded mb-2`}
                                   value={item?.option}
-                                  onChange={(e) => console.log(e.target.value)}
+                                  onChange={(e) =>
+                                    handleDefaultValue(
+                                      questionTitle,
+                                      e.target.value
+                                    )
+                                  }
                                 >
                                   {item?.option}
                                 </Radio>

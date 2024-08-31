@@ -61,22 +61,32 @@ const Navbar = () => {
           </div>
           <div className="flex gap-6 items-center">
             <Link
+              href={"/"}
+              className="color-main-two font-medium hidden md:block"
+            >
+              <p>Home</p>
+              {path === "/" && <hr />}
+            </Link>
+            <Link
               href={"/my-result"}
-              className="color-main-two hidden md:block"
+              className="color-main-two font-medium hidden md:block"
             >
               <p>Result</p>
+              {path === "/my-result" && <hr />}
             </Link>
             <Link
               href={"/merit-list"}
-              className="color-main-two hidden md:block"
+              className="color-main-two font-medium hidden md:block"
             >
               <p>Merit List</p>
+              {path === "/merit-list" && <hr />}
             </Link>
             <Link
-              href={"/merit-list"}
-              className="color-main-two  hidden md:block"
+              href={"/login"}
+              className="color-main-two font-medium hidden md:block"
             >
               <p>Login</p>
+              {path === "/login" && <hr />}
             </Link>
             <Link
               href={"/merit-list"}
