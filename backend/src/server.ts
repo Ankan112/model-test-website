@@ -14,7 +14,7 @@ let server: Server;
 async function bootstrap() {
   try {
     await mongoose.connect(configs.db_url as string);
-    console.log('Database connection established 😇');
+    console.log('Database connection established 🚀');
 
     server = app.listen(configs.port, () => {
       console.log(
@@ -22,7 +22,7 @@ async function bootstrap() {
       );
     });
   } catch (error) {
-    console.log('Failed to connect to database', error);
+    console.log('Failed to connect to database 😰', error);
   }
   // Gracefully shutting down the server in case of unhandled rejection
   process.on('unhandledRejection', error => {

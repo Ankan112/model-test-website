@@ -3,11 +3,16 @@ import { Model } from 'mongoose';
 
 export type IUser = {
   _id: string;
-  password: string;
-  role: 'user' | 'admin';
-  name: string;
   email: string;
+  password: string;
+  role: 'student' | 'admin';
+  name: string;
   phone: string;
+  address: string;
+  college: string;
+  image: string;
+  unit: string;
+  batch: string;
 };
 
 export type IUserMethods = {
@@ -26,3 +31,5 @@ export type IUserFilter = {
   phoneNumber?: string;
   address?: string;
 };
+
+

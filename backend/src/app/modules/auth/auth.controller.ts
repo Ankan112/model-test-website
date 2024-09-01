@@ -13,24 +13,34 @@ import config from '../../../config';
 const createUser: RequestHandler = catchAsync(async (req, res) => {
   const { ...userData } = req.body;
 
-  const { result, refreshToken, accessToken } = await AuthService.createUser(
-    userData
-  );
-
-  // set refresh token in the browser cookie
-  const cookieOptions = {
-    secure: config.node_env === 'production',
-    httpOnly: true,
-  };
-
-  res.cookie('refreshToken', refreshToken, cookieOptions);
-
-  sendResponse<IUserSignupResponse>(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'user created successfully',
-    data: { result, accessToken },
-  });
+  if(userData?.role === "student" && (!userData?.college || !userData?.unit || !userData?.batch)){
+      sendResponse<IUserSignupResponse>(res, {
+        statusCode: httpStatus.BAD_REQUEST,
+        success: false,
+        message: 'college, unit and batch are required',
+        data: null,
+      });
+    
+  } else{
+    const { result, refreshToken, accessToken } = await AuthService.createUser(
+      userData
+    );
+  
+    // set refresh token in the browser cookie
+    const cookieOptions = {
+      secure: config.node_env === 'production',
+      httpOnly: true,
+    };
+  
+    res.cookie('refreshToken', refreshToken, cookieOptions);
+  
+    sendResponse<IUserSignupResponse>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'user created successfully',
+      data: { result, accessToken },
+    });
+  }
 });
 
 const login: RequestHandler = catchAsync(async (req, res) => {

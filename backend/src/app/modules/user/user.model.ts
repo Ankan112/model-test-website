@@ -30,6 +30,22 @@ const userSchema = new Schema<IUser, UserModel>(
       required: true,
       unique: true,
     },
+    address: {
+      type: String,
+      required: true,
+    },
+    college: {
+      type: String,
+    },
+    image: {
+      type: String,
+    },
+    unit: {
+      type: String,
+    },
+    batch: {
+      type: String,
+    },
   },
   {
     timestamps: true,
