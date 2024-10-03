@@ -1,9 +1,12 @@
-import React from "react";
+import SectionTitle from "@/components/Shared/SectionTitle";
 
 const ModelTestDetails = () => {
   return (
-    <div className="main-container mt-14">
-      <h1>model test details</h1>
+    <div className="main-container my-14">
+      <SectionTitle
+        title={"Model Test Details"}
+        des={"Lorem ipsum dolor sit amet consectetur adipisicing "}
+      />
     </div>
   );
 };

@@ -1,6 +1,6 @@
+import SectionTitle from "@/components/Shared/SectionTitle";
 import { Button, Image, Tag } from "antd";
 import Link from "next/link";
-import React from "react";
 
 const ModelTest = () => {
   const courses = [
@@ -22,12 +22,13 @@ const ModelTest = () => {
     },
   ];
   return (
-    <div className="main-container mt-14">
+    <div className="main-container my-14">
+      <SectionTitle
+        title={" Our Latest Model Test"}
+        des={"Lorem ipsum dolor sit amet consectetur  "}
+      />
       <div className="flex justify-center items-center">
         <div>
-          <h2 className="text-center font-semibold text-2xl md:text-4xl mb-4 md:mb-8 ">
-            Our Latest Model Test
-          </h2>
           <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
             {courses?.map((item) => {
               const { id, courseTitle, subjects, price } = item || {};

@@ -30,7 +30,13 @@
 .color-main-bg {
   background: rgba(25, 25, 235, 0.681);
 }
-
+/* ##################### Footer Colors ################## */
+.footer-bg {
+  background: rgb(44, 42, 42);
+}
+.social:hover {
+  background: white;
+}
 ul {
   list-style: none;
 }
@@ -39,6 +45,9 @@ li {
 }
 a {
   text-decoration: none;
+}
+.common-border-color {
+  border-color: rgba(25, 25, 235, 0.681);
 }
 
 :where(.css-dev-only-do-not-override-3mqfnx).ant-card .ant-card-head-title {
