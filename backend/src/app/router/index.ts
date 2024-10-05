@@ -3,7 +3,7 @@ import { UserRouter } from '../modules/user/user.router';
 import { AuthRouter } from '../modules/auth/auth.router';
 import { BookRouter } from '../modules/book/book.router';
 import { WishlistRouter } from '../modules/wishlist/wishList.router';
-import { readSoonRouter } from '../modules/readSoon/readSoon.router';
+import { courseCardRouter } from '../modules/courseCard/courseCard.router';
 const router = express.Router();
 
 const moduleRoutes = [
@@ -24,8 +24,8 @@ const moduleRoutes = [
     router: WishlistRouter,
   },
   {
-    path: '/readSoon',
-    router: readSoonRouter,
+    path: '/course-card',
+    router: courseCardRouter,
   },
 ];
 
