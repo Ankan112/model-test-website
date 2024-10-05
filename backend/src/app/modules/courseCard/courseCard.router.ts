@@ -5,4 +5,4 @@ const router = express.Router();
 router.get('/', CourseCardController.getAllCourses);
 
 
-export const courseCardRouter = router;
+export const CourseCardRouter = router;
